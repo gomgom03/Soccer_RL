@@ -12,19 +12,3 @@ let server = app.listen(port, () => {
 app.get("/", (req, res) => {
     res.render("home.ejs");
 })
-
-app.get("/test", (req, res) => {
-    res.render("test.ejs");
-})
-
-app.get('/rl', (req, res) => {
-    res.render("rl.ejs")
-})
-
-app.get('/test2', (req, res) => {
-    res.render('test2.ejs')
-})
-
-app.get('/test3', (req, res) => {
-    res.render('test3.ejs')
-})

@@ -11,10 +11,12 @@ const Engine = Matter.Engine,
     Mouse = Matter.Mouse,
     World = Matter.World,
     Bodies = Matter.Bodies,
-    Vector = Matter.Vector;
+    Vector = Matter.Vector,
+    canvasContainer = document.getElementById("canvasContainer")
 
 let sizeX = 2000,
-    sizeY = 2000
+    sizeY = 2000,
+    windowMax = window.innerWidth < window.innerHeight ? window.innerWidth : window.innerHeight;
 //releaseT = 50
 
 let engine = Engine.create(),
@@ -23,11 +25,11 @@ let engine = Engine.create(),
 world.gravity.scale = 0.00//3;
 
 let render = Render.create({
-    element: document.body,
+    element: canvasContainer,
     engine: engine,
     options: {
-        width: 900,
-        height: 900,
+        width: windowMax / 2,
+        height: windowMax / 2,
         wireframes: false,
         background: '#404040'
     }
@@ -308,12 +310,14 @@ function assignReward() {
     rtVal += 0.25 * (1 - (ballGoal) / speed)
     rtVal += 0.25 * (1 - ballGoalDist / ballOtherMinDist);
     rtVal += 0.25 * (1 - vectorDiff / Math.PI * 2);
-
+    let tClr
     if (rtVal > 0) {
-        ball.render.fillStyle = lightenColor(positiveClr, rtVal)
+        tClr = lightenColor(positiveClr, rtVal);
     } else {
-        ball.render.fillStyle = lightenColor(negativeClr, Math.abs(rtVal))
+        tClr = lightenColor(negativeClr, Math.abs(rtVal))
     }
+    ball.render.fillStyle = tClr;
+    //canvasContainer.style.borderColor = tClr;
 
     //rtVal += 0.25 * (1 - (actorBall) / speed)
     let coll = Detector.collisions(posCollisions, engine);

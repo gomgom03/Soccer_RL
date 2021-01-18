@@ -9,10 +9,90 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.14.2/matter.min.js"
         integrity="sha512-pi0tSRZdlNRZeANPwdAIHRAYg6gZZV6QlAiyHXn5TYqLzBKE9jlttO/QgYLMhISD6oNv2kPsVelx+n5nw0FqKA=="
         crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">DQN Learning Based on different reward factors (4 way soccer model)</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#" style="color: red;">TESTING <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/gomgom03/Soccer_RL">GITHUB<span
+                            class="sr-only"></span></a>
+                </li>
+            </ul>
+        </div>
+        <small>Created by Hyun Min (Eddie) Kim</small>
+    </nav>
+    <div class="container-fluid mt-3 mb-3">
+        <div class="row">
+            <div class="column">
+                <div class="container" id="canvasContainer">
+                </div>
+
+            </div>
+            <div class="column">
+                <div class="inputTitle">
+                    Reward Factors (These should add up to 1)
+                </div>
+                <div class="inputDiv">
+                    <span>Actor moving towards Ball: </span>
+                    <input type="number" placeholder="0 - 1">
+                    <div>
+                        <small>bruh</small>
+                    </div>
+
+                </div>
+                <div class="inputDiv">
+                    <span>Ball moving towards selected Goal: </span>
+                    <input type="number" placeholder="0 - 1">
+                    <div>
+                        <small>bruh</small>
+                    </div>
+                </div>
+                <div class="inputDiv">
+                    <span>Distance from Ball to selected Goal vs the other nearest Goal: </span>
+                    <input type="number" placeholder="0 - 1">
+                    <div>
+                        <small>bruh</small>
+                    </div>
+                </div>
+                <div class="inputDiv">
+                    <span></span>
+                    <input type="number" placeholder="0 - 1">
+                    <div>
+                        <small>bruh</small>
+                    </div>
+                </div>
+                <button>
+                    Start
+                </button>
+            </div>
+        </div>
+
+
+
+    </div>
     <script src="soccer.js"></script>
     <script src="dqn_learn.js"></script>
 </body>
