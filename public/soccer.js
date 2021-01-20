@@ -197,6 +197,7 @@ let selectedGoal,
     negativeClr = "#dd1010"
 
 function assessSurroudings() {
+    let { numSensors } = otherParam;
     let ballPoint = actor.position;
     let tRad = Math.PI / numSensors * 2;
     let sensorValues = [];
@@ -304,10 +305,11 @@ function assignReward() {
             }
         }
     }
-    rtVal += 0.25 * (1 - (actorBall) / speed)
-    rtVal += 0.25 * (1 - (ballGoal) / speed)
-    rtVal += 0.25 * (1 - (ballGoalDist / ballOtherMinDist > 2 ? 2 : ballGoalDist / ballOtherMinDist));
-    rtVal += 0.25 * (1 - vectorDiff / Math.PI * 2);
+    let { abReward, bgReward, distReward, angleReward } = rewards;
+    rtVal += abReward * (1 - (actorBall) / speed)
+    rtVal += bgReward * (1 - (ballGoal) / speed)
+    rtVal += distReward * (1 - (ballGoalDist / ballOtherMinDist > 2 ? 2 : ballGoalDist / ballOtherMinDist));
+    rtVal += angleReward * (1 - vectorDiff / Math.PI * 2);
     let tClr
     if (rtVal > 0) {
         tClr = lightenColor(positiveClr, rtVal);

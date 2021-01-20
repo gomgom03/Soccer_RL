@@ -139,12 +139,7 @@
                                 dist(Actor, Ball))) / PI</small>
                         </div>
                     </div>
-                    <div class="inputDiv mt-2 mb-2">
-                        <span># of sensors: </span>
-                        <br>
-                        <input type="number" class="rewardFactorInputs" placeholder="128" id="numSensors">
-                    </div>
-                    <button class="startButtons">
+                    <button class="startButtons mb-3">
                         Start
                     </button>
                 </div>
@@ -202,7 +197,24 @@
                         <input type="number" class="parameterInputs" placeholder="100" id="num_hidden_units">
                     </div>
 
-                    <button class="startButtons">
+                    <button class="startButtons mb-3">
+                        Start
+                    </button>
+                </div>
+                <button data-toggle="collapse" data-target="#otherParameters">
+                    <strong>Change Other</strong>
+                </button>
+                <div class="inputTitle collapse" id="otherParameters">
+                    <small class="inputDesc">
+                        Default Values are in the Placeholder
+                    </small>
+                    <div class="inputDiv mt-2 mb-2">
+                        <span># of sensors: </span>
+                        <br>
+                        <input type="text" class="otherInputs" placeholder="128" id="numSensors">
+                    </div>
+
+                    <button class="startButtons mb-3">
                         Start
                     </button>
                 </div>
