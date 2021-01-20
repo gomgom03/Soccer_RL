@@ -51,7 +51,6 @@ function startNew() {
         temp !== "" ? otherParam[x.id] = parseFloat(temp) : null;
     })
     agent = new RL.DQNAgent(env, spec);
-    alert("Updated");
 }
 
 startNew();
