@@ -15,8 +15,8 @@ const Engine = Matter.Engine,
     canvasContainer = document.getElementById("canvasContainer")
 
 let sizeX = 2000,
-    sizeY = 2000,
-    windowMax = window.innerWidth < window.innerHeight ? window.innerWidth : window.innerHeight;
+    sizeY = 2000
+//windowMax = window.innerWidth < window.innerHeight ? window.innerWidth : window.innerHeight;
 //releaseT = 50
 
 let engine = Engine.create(),
@@ -28,8 +28,8 @@ let render = Render.create({
     element: canvasContainer,
     engine: engine,
     options: {
-        width: windowMax / 2,
-        height: windowMax / 2,
+        width: window.innerWidth / 2,
+        height: window.innerWidth / 2,
         wireframes: false,
         background: '#404040'
     }
@@ -191,7 +191,6 @@ Render.lookAt(render, {
 
 
 let selectedGoal,
-    numSensors = 128,
     rayColors = ['#ffffff', '#ffff00', '#03fc07', '#ff0000'],
     speed = 3,
     positiveClr = "#10cc10",
@@ -305,10 +304,9 @@ function assignReward() {
             }
         }
     }
-
     rtVal += 0.25 * (1 - (actorBall) / speed)
     rtVal += 0.25 * (1 - (ballGoal) / speed)
-    rtVal += 0.25 * (1 - ballGoalDist / ballOtherMinDist);
+    rtVal += 0.25 * (1 - (ballGoalDist / ballOtherMinDist > 2 ? 2 : ballGoalDist / ballOtherMinDist));
     rtVal += 0.25 * (1 - vectorDiff / Math.PI * 2);
     let tClr
     if (rtVal > 0) {

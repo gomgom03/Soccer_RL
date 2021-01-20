@@ -42,51 +42,170 @@
                 </li>
             </ul>
         </div>
-        <small>Created by Hyun Min (Eddie) Kim</small>
+        <div>
+            <small>Created by Hyun Min (Eddie) Kim</small>
+            <br>
+            <small>Using <a href="https://github.com/karpathy/reinforcejs">reinforce.js</a></small>
+        </div>
+
     </nav>
     <div class="container-fluid mt-3 mb-3">
         <div class="row">
-            <div class="column">
+            <div class="col-7">
                 <div class="container" id="canvasContainer">
                 </div>
 
             </div>
-            <div class="column">
-                <div class="inputTitle">
-                    Reward Factors (These should add up to 1)
+            <div class="col">
+                <button data-toggle="collapse" data-target="#rewardFactors">
+                    <strong>Change Reward Factors</strong>
+                </button>
+                <div class="inputTitle collapse mb-3" id="rewardFactors">
+                    <small class="inputDesc">
+                        Actor's velocity: <strong>aVel</strong>
+                    </small>
+                    <br>
+                    <small class="inputDesc">
+                        Ball's velocity: <strong>bVel</strong>
+                    </small>
+                    <br>
+                    <small class="inputDesc">
+                        Distance from a to b: <strong>dist(a,b)</strong>
+                    </small>
+                    <br>
+                    <small class="inputDesc">
+                        Actor's position: <strong>aPos</strong>
+                    </small>
+                    <br>
+                    <small class="inputDesc">
+                        Ball's position: <strong>bPos</strong>
+                    </small>
+                    <br>
+                    <small class="inputDesc">
+                        Angle between vectors a and b: <strong>ang(a,b)</strong>
+                    </small>
+                    <br>
+                    <small class="inputDesc">
+                        Vector from position a to b: <strong>vect(a,b)</strong>
+                    </small>
+                    <br>
+                    <small class="inputDesc">
+                        Maximum speed of Actor: <strong>ms</strong>
+                    </small>
+                    <br>
+                    <small class="inputDesc">
+                        Selected Goal Position: <strong>sGoal</strong>
+                    </small>
+                    <br>
+                    <small class="inputDesc">
+                        Other closest Goal Position: <strong>oGoal</strong>
+                    </small>
+                    <br>
+
+                    <div class="inputDiv mt-2 mb-2">
+                        <span>Actor moving towards Ball: </span>
+                        <br>
+                        <input type="number" placeholder="0 - 1" id="abReward" class="rewardFactorInputs">
+                        <div>
+                            <small class="inputDesc">1 - ((dist(aPos + aVel, bPos) + ms - dist(aPos, bPos)) /
+                                ms)</small>
+                        </div>
+                    </div>
+                    <div class="inputDiv mt-2 mb-2">
+                        <span>Ball moving towards selected Goal: </span>
+                        <br>
+                        <input type="number" placeholder="0 - 1" id="bgReward" class="rewardFactorInputs">
+                        <div>
+                            <small class="inputDesc">1 - ((dist(bPos + bVel, sGoal) + ms - dist(bPos, sGoal)) /
+                                ms)</small>
+                        </div>
+                    </div>
+                    <div class="inputDiv mt-2 mb-2">
+                        <span>Distance from Ball to selected Goal vs the other nearest Goal: </span>
+                        <br>
+                        <input type="number" placeholder="0 - 1" id="distReward" class="rewardFactorInputs">
+                        <div>
+                            <small class="inputDesc">1 - (dist(bPos, sGoal) / dist(bPos, oGoal)), Min -1</small>
+                        </div>
+                    </div>
+                    <div class="inputDiv mt-2 mb-2">
+                        <span>Direction of vector from Actor to Ball vs Ball to selected Goal: </span>
+                        <br>
+                        <input type="number" placeholder="0 - 1" id="angleReward" class="rewardFactorInputs">
+                        <div>
+                            <small class="inputDesc">1 - 2 * cos^-1((vect(Ball, sGoal) · vect(Actor, Ball)) /
+                                (dist(Ball,
+                                sGoal) *
+                                dist(Actor, Ball))) / PI</small>
+                        </div>
+                    </div>
+                    <div class="inputDiv mt-2 mb-2">
+                        <span># of sensors: </span>
+                        <br>
+                        <input type="number" class="rewardFactorInputs" placeholder="128" id="numSensors">
+                    </div>
+                    <button class="startButtons">
+                        Start
+                    </button>
                 </div>
-                <div class="inputDiv">
-                    <span>Actor moving towards Ball: </span>
-                    <input type="number" placeholder="0 - 1">
-                    <div>
-                        <small>bruh</small>
+                <br>
+                <button data-toggle="collapse" data-target="#parameters">
+                    <strong>Change Parameters</strong>
+                </button>
+                <div class="inputTitle collapse" id="parameters">
+                    <small class="inputDesc">
+                        Default Values are in the Placeholder
+                    </small>
+                    <div class="inputDiv mt-2 mb-2">
+                        <span>Learning Type (qlearn or sarsa): </span>
+                        <br>
+                        <input type="text" class="parameterInputs" placeholder="qlearn" id="update">
+                    </div>
+                    <div class="inputDiv mt-2 mb-2">
+                        <span>Discount Factor [0, 1): </span>
+                        <br>
+                        <input type="number" class="parameterInputs" placeholder="0.75" id="gamma">
+                    </div>
+                    <div class="inputDiv mt-2 mb-2">
+                        <span>Intial Epsilon Value [0, 1): </span>
+                        <br>
+                        <input type="number" class="parameterInputs" placeholder="0.1" id="epsilon">
+                    </div>
+                    <div class="inputDiv mt-2 mb-2">
+                        <span>Function Learning Rate: </span>
+                        <br>
+                        <input type="number" class="parameterInputs" placeholder="0.01" id="alpha">
+                    </div>
+                    <div class="inputDiv mt-2 mb-2">
+                        <span>Number of time steps before adding another to replay memory: </span>
+                        <br>
+                        <input type="number" class="parameterInputs" placeholder="25" id="experience_add_every">
+                    </div>
+                    <div class="inputDiv mt-2 mb-2">
+                        <span>Size of Experience: </span>
+                        <br>
+                        <input type="number" class="parameterInputs" placeholder="5000" id="experience_size">
+                    </div>
+                    <div class="inputDiv mt-2 mb-2">
+                        <span>Learning Step Per Iteration: </span>
+                        <br>
+                        <input type="number" class="parameterInputs" placeholder="10" id="learning_steps_per_iteration">
+                    </div>
+                    <div class="inputDiv mt-2 mb-2">
+                        <span>tderror clamp: </span>
+                        <br>
+                        <input type="number" class="parameterInputs" placeholder="1" id="tderror_clamp">
+                    </div>
+                    <div class="inputDiv mt-2 mb-2">
+                        <span># of neurons in hidden layer: </span>
+                        <br>
+                        <input type="number" class="parameterInputs" placeholder="100" id="num_hidden_units">
                     </div>
 
+                    <button class="startButtons">
+                        Start
+                    </button>
                 </div>
-                <div class="inputDiv">
-                    <span>Ball moving towards selected Goal: </span>
-                    <input type="number" placeholder="0 - 1">
-                    <div>
-                        <small>bruh</small>
-                    </div>
-                </div>
-                <div class="inputDiv">
-                    <span>Distance from Ball to selected Goal vs the other nearest Goal: </span>
-                    <input type="number" placeholder="0 - 1">
-                    <div>
-                        <small>bruh</small>
-                    </div>
-                </div>
-                <div class="inputDiv">
-                    <span></span>
-                    <input type="number" placeholder="0 - 1">
-                    <div>
-                        <small>bruh</small>
-                    </div>
-                </div>
-                <button>
-                    Start
-                </button>
             </div>
         </div>
 
