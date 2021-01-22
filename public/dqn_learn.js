@@ -40,7 +40,6 @@ function startNew() {
     parameterInputs.forEach(x => {
         let temp = x.value;
         temp !== "" ? x.type !== "text" ? spec[x.id] = parseFloat(temp) : spec[x.id] = temp : null;
-        console.log(spec);
     })
     rewardFactorInputs.forEach(x => {
         let temp = x.value;

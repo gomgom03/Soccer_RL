@@ -46,7 +46,8 @@
         <div>
             <small>Created by Hyun Min (Eddie) Kim</small>
             <br>
-            <small>Using <a href="https://github.com/karpathy/reinforcejs">reinforce.js</a></small>
+            <small>Using <a href="https://github.com/karpathy/reinforcejs">reinforce.js</a> and <a
+                    href="https://github.com/chartjs/Chart.js">chart.js</a></small>
         </div>
 
     </nav>
@@ -225,27 +226,39 @@
         </div>
         <hr>
         <div class="container mt-3 mb-3" id="graphContainer">
-            <button>Chart Options</button>
-            <div class="typeSelect">
-                <input type="checkbox" id="reward1" class="typeSelectInput">
-                <label for="reward1">Reward 1</label>
+            <div class="row justify-content-center">
+                <div class="col text-center">
+                    <div class="typeSelect">
+                        <input type="checkbox" id="reward1" class="typeSelectInput">
+                        <label for="reward1">Reward 1</label>
+                    </div>
+                    <div class="typeSelect">
+                        <input type="checkbox" id="reward2" class="typeSelectInput">
+                        <label for="reward2">Reward 2</label>
+                    </div>
+                    <div class="typeSelect">
+                        <input type="checkbox" id="reward3" class="typeSelectInput">
+                        <label for="reward3">Reward 3</label>
+                    </div>
+                    <div class="typeSelect">
+                        <input type="checkbox" id="reward4" class="typeSelectInput">
+                        <label for="reward4">Reward 4</label>
+                    </div>
+                    <div class="typeSelect">
+                        <input type="checkbox" id="allRewards" class="typeSelectInput" checked>
+                        <label for="allRewards">All Rewards</label>
+                    </div>
+                </div>
+                <div class="col text-center">
+                    <div>
+                        <label for="intervals">Average x iterations per point: </label>
+                        <input type="number" id="averageX" class="intervalSelectInput" placeholder="100">
+                        <button id="averageXButton">Go</button>
+                    </div>
+
+                </div>
             </div>
-            <div class="typeSelect">
-                <input type="checkbox" id="reward2" class="typeSelectInput">
-                <label for="reward2">Reward 2</label>
-            </div>
-            <div class="typeSelect">
-                <input type="checkbox" id="reward3" class="typeSelectInput">
-                <label for="reward3">Reward 3</label>
-            </div>
-            <div class="typeSelect">
-                <input type="checkbox" id="reward4" class="typeSelectInput">
-                <label for="reward4">Reward 4</label>
-            </div>
-            <div class="typeSelect">
-                <input type="checkbox" id="allRewards" class="typeSelectInput">
-                <label for="allRewards">All Rewards</label>
-            </div>
+
         </div>
 
 

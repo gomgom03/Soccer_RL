@@ -306,10 +306,12 @@ function assignReward() {
         }
     }
     let { abReward, bgReward, distReward, angleReward } = rewards;
-    rtVal += abReward * (1 - (actorBall) / speed)
-    rtVal += bgReward * (1 - (ballGoal) / speed)
-    rtVal += distReward * (1 - (ballGoalDist / ballOtherMinDist > 2 ? 2 : ballGoalDist / ballOtherMinDist));
-    rtVal += angleReward * (1 - vectorDiff / Math.PI * 2);
+    let tempRewards = [abReward * (1 - (actorBall) / speed), bgReward * (1 - (ballGoal) / speed), distReward * (1 - (ballGoalDist / ballOtherMinDist > 2 ? 2 : ballGoalDist / ballOtherMinDist)), angleReward * (1 - vectorDiff / Math.PI * 2)]
+    rtVal += tempRewards[0];
+    rtVal += tempRewards[1];
+    rtVal += tempRewards[2];
+    rtVal += tempRewards[3];
+    addData(tempRewards);
     let tClr
     if (rtVal > 0) {
         tClr = lightenColor(positiveClr, rtVal);
