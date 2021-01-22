@@ -4,5 +4,14 @@ body {
 }
 
 .inputDesc {
-    color: #000dff;
+    color: #ff0000;
+    font-size: 12px;
+}
+
+.spanInfo {
+    font-size: 14px;
+}
+
+.rewardFactor .parameterInputs .otherInputs {
+    font-size: 13px;
 }

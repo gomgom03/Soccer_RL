@@ -20,6 +20,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -54,10 +55,9 @@
             <div class="col-7">
                 <div class="container" id="canvasContainer">
                 </div>
-
             </div>
             <div class="col">
-                <button data-toggle="collapse" data-target="#rewardFactors">
+                <button class="btn btn-light mb-1 mt-1" data-toggle="collapse" data-target="#rewardFactors">
                     <strong>Change Reward Factors</strong>
                 </button>
                 <div class="inputTitle collapse mb-3" id="rewardFactors">
@@ -103,7 +103,7 @@
                     <br>
 
                     <div class="inputDiv mt-2 mb-2">
-                        <span>Actor moving towards Ball: </span>
+                        <span class="spanInfo">(1) Actor moving towards Ball: </span>
                         <br>
                         <input type="number" placeholder="0 - 1" id="abReward" class="rewardFactorInputs">
                         <div>
@@ -112,7 +112,7 @@
                         </div>
                     </div>
                     <div class="inputDiv mt-2 mb-2">
-                        <span>Ball moving towards selected Goal: </span>
+                        <span class="spanInfo">(2) Ball moving towards selected Goal: </span>
                         <br>
                         <input type="number" placeholder="0 - 1" id="bgReward" class="rewardFactorInputs">
                         <div>
@@ -121,7 +121,8 @@
                         </div>
                     </div>
                     <div class="inputDiv mt-2 mb-2">
-                        <span>Distance from Ball to selected Goal vs the other nearest Goal: </span>
+                        <span class="spanInfo">(3) Distance from Ball to selected Goal vs the other nearest Goal:
+                        </span>
                         <br>
                         <input type="number" placeholder="0 - 1" id="distReward" class="rewardFactorInputs">
                         <div>
@@ -129,7 +130,8 @@
                         </div>
                     </div>
                     <div class="inputDiv mt-2 mb-2">
-                        <span>Direction of vector from Actor to Ball vs Ball to selected Goal: </span>
+                        <span class="spanInfo">(4) Direction of vector from Actor to Ball vs Ball to selected Goal:
+                        </span>
                         <br>
                         <input type="number" placeholder="0 - 1" id="angleReward" class="rewardFactorInputs">
                         <div>
@@ -144,7 +146,7 @@
                     </button>
                 </div>
                 <br>
-                <button data-toggle="collapse" data-target="#parameters">
+                <button class="btn btn-light mb-1 mt-1" data-toggle="collapse" data-target="#parameters">
                     <strong>Change Parameters</strong>
                 </button>
                 <div class="inputTitle collapse" id="parameters">
@@ -152,47 +154,47 @@
                         Default Values are in the Placeholder
                     </small>
                     <div class="inputDiv mt-2 mb-2">
-                        <span>Learning Type (qlearn or sarsa): </span>
+                        <span class="spanInfo">Learning Type (qlearn or sarsa): </span>
                         <br>
                         <input type="text" class="parameterInputs" placeholder="qlearn" id="update">
                     </div>
                     <div class="inputDiv mt-2 mb-2">
-                        <span>Discount Factor [0, 1): </span>
+                        <span class="spanInfo">Discount Factor [0, 1): </span>
                         <br>
                         <input type="number" class="parameterInputs" placeholder="0.75" id="gamma">
                     </div>
                     <div class="inputDiv mt-2 mb-2">
-                        <span>Intial Epsilon Value [0, 1): </span>
+                        <span class="spanInfo">Intial Epsilon Value [0, 1): </span>
                         <br>
                         <input type="number" class="parameterInputs" placeholder="0.1" id="epsilon">
                     </div>
                     <div class="inputDiv mt-2 mb-2">
-                        <span>Function Learning Rate: </span>
+                        <span class="spanInfo">Function Learning Rate: </span>
                         <br>
                         <input type="number" class="parameterInputs" placeholder="0.01" id="alpha">
                     </div>
                     <div class="inputDiv mt-2 mb-2">
-                        <span>Number of time steps before adding another to replay memory: </span>
+                        <span class="spanInfo">Number of time steps before adding another to replay memory: </span>
                         <br>
                         <input type="number" class="parameterInputs" placeholder="25" id="experience_add_every">
                     </div>
                     <div class="inputDiv mt-2 mb-2">
-                        <span>Size of Experience: </span>
+                        <span class="spanInfo">Size of Experience: </span>
                         <br>
                         <input type="number" class="parameterInputs" placeholder="5000" id="experience_size">
                     </div>
                     <div class="inputDiv mt-2 mb-2">
-                        <span>Learning Step Per Iteration: </span>
+                        <span class="spanInfo">Learning Step Per Iteration: </span>
                         <br>
                         <input type="number" class="parameterInputs" placeholder="10" id="learning_steps_per_iteration">
                     </div>
                     <div class="inputDiv mt-2 mb-2">
-                        <span>tderror clamp: </span>
+                        <span class="spanInfo">tderror clamp: </span>
                         <br>
                         <input type="number" class="parameterInputs" placeholder="1" id="tderror_clamp">
                     </div>
                     <div class="inputDiv mt-2 mb-2">
-                        <span># of neurons in hidden layer: </span>
+                        <span class="spanInfo"># of neurons in hidden layer: </span>
                         <br>
                         <input type="number" class="parameterInputs" placeholder="100" id="num_hidden_units">
                     </div>
@@ -201,7 +203,8 @@
                         Start
                     </button>
                 </div>
-                <button data-toggle="collapse" data-target="#otherParameters">
+                <br>
+                <button class="btn btn-light mb-1 mt-1" data-toggle="collapse" data-target="#otherParameters">
                     <strong>Change Other</strong>
                 </button>
                 <div class="inputTitle collapse" id="otherParameters">
@@ -209,7 +212,7 @@
                         Default Values are in the Placeholder
                     </small>
                     <div class="inputDiv mt-2 mb-2">
-                        <span># of sensors: </span>
+                        <span class="spanInfo"># of sensors: </span>
                         <br>
                         <input type="text" class="otherInputs" placeholder="128" id="numSensors">
                     </div>
@@ -220,12 +223,40 @@
                 </div>
             </div>
         </div>
+        <hr>
+        <div class="container mt-3 mb-3" id="graphContainer">
+            <button>Chart Options</button>
+            <div class="typeSelect">
+                <input type="checkbox" id="reward1" class="typeSelectInput">
+                <label for="reward1">Reward 1</label>
+            </div>
+            <div class="typeSelect">
+                <input type="checkbox" id="reward2" class="typeSelectInput">
+                <label for="reward2">Reward 2</label>
+            </div>
+            <div class="typeSelect">
+                <input type="checkbox" id="reward3" class="typeSelectInput">
+                <label for="reward3">Reward 3</label>
+            </div>
+            <div class="typeSelect">
+                <input type="checkbox" id="reward4" class="typeSelectInput">
+                <label for="reward4">Reward 4</label>
+            </div>
+            <div class="typeSelect">
+                <input type="checkbox" id="allRewards" class="typeSelectInput">
+                <label for="allRewards">All Rewards</label>
+            </div>
+        </div>
 
+
+        <canvas id="dataChart"></canvas>
+    </div>
 
 
     </div>
     <script src="soccer.js"></script>
     <script src="dqn_learn.js"></script>
+    <script src="graph.js"></script>
 </body>
 
 </html>
