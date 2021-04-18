@@ -34,6 +34,9 @@ startButtons.forEach(x => { x.addEventListener("click", startNew) });
 
 
 function startNew() {
+    chartData = [[], [], [], []];
+    totIterations = 0;
+    resetGraph();
     env = {};
     env.getNumStates = function () { return otherParam.numSensors; }
     env.getMaxNumActions = function () { return 8; }
